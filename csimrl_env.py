@@ -9,11 +9,11 @@ os.environ["MKL_NUM_THREADS"] = "1"
 import torch
 torch.set_num_threads(1)
 
-from deployment.base_env import BaseEnv
+from base_env import BaseEnv
 from typing import Callable
 import numpy as np
 from collections import deque
-from deployment.csim_model import PermInvPolicyNet
+from csim_model import PermInvPolicyNet
 
 OBS_HISTORY = 8
 NUM_CHOICES_SCALE = 12

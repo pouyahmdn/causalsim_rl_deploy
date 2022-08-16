@@ -5,7 +5,7 @@
 
 # A default shebang is set, but it may not point to the expected python path
 import sys
-from deployment.csimrl_env import CsimRLEnv
+from csimrl_env import CsimRLEnv
 
 
 def main(args_env):
