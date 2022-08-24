@@ -5,5 +5,5 @@ The code is adapted from [this repo](https://github.com/sagar-pa/abr_rl_test).
 
 Run:
 ```
-python3.py test.py ./models/cs_v3_rp60_e75k server_address
+python3 test.py causalsim_rl ./models/cs_v3_rp60_e75k server_address
 ```
