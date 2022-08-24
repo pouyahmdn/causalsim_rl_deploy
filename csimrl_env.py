@@ -22,7 +22,7 @@ MAX_BUFFER_S = 15                   # Seconds
 # Q_BAR_BAR = 1 - np.power(10, -15.07/10)
 # REBUF_DYN_PEN = REBUF_BASE_PEN / 10 * np.log(10) / 2.002 * (1 - Q_BAR_BAR)
 REBUF_DYN_PEN = 0.215
-THR_SCALE = 1e6 / 8                 # Mbps
+THR_SCALE = 1 / 8                   # MB -> Mb
 SSIM_DB_SCALE = 60
 MAX_THR = 40                        # Mbps
 MAX_DTIME = 20                      # Seconds
@@ -51,6 +51,12 @@ class CsimRLEnv(BaseEnv):
         return model
 
     def process_env_info(self, env_info: dict) -> dict:
+        # env_info["past_chunk"]["delay"] -> Seconds
+        # env_info["past_chunk"]["size"] -> MegaBytes
+        # env_info["past_chunk"]["ssim"] -> Unitless
+        # env_info["sizes"] -> MegaBytes, first one is next chunk
+        # env_info["ssims"] -> Unitless, first one is next chunk
+        # env_info["buffer"] -> Seconds
         valid_past_action_norm = 0
         if self.past_action is not None:  # avoid doing extra work on zeros for very first action
             self.norm_past_download_times.append(min(env_info["past_chunk"]["delay"], MAX_DTIME))
